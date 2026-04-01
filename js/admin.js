@@ -56,6 +56,13 @@ function filterByDate() {
   document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
   renderBookings(d ? allBookings.filter(b=>b.date===d) : allBookings);
 }
+/* sanitize text to prevent XSS */
+function esc(str) {
+  const d = document.createElement('div');
+  d.textContent = str || '';
+  return d.innerHTML;
+}
+
 function renderBookings(list) {
   const el = document.getElementById('bookings-list');
   if (!list.length) { el.innerHTML='<div class="empty">אין תורים להצגה</div>'; return; }
@@ -65,21 +72,21 @@ function renderBookings(list) {
     <div class="date-group">
       <h3 class="date-label">${formatDate(date)}</h3>
       ${items.map(b=>`
-        <div class="booking-card status-${b.status}">
-          <div class="booking-time">${b.time}</div>
+        <div class="booking-card status-${esc(b.status)}">
+          <div class="booking-time">${esc(b.time)}</div>
           <div class="booking-info">
-            <strong>${b.name}</strong>
-            <a href="tel:${b.phone}">${b.phone}</a>
-            <span class="booking-service">${b.service}</span>
-            ${b.notes?`<span class="booking-notes">${b.notes}</span>`:''}
+            <strong>${esc(b.name)}</strong>
+            <a href="tel:${esc(b.phone)}">${esc(b.phone)}</a>
+            <span class="booking-service">${esc(b.service)}</span>
+            ${b.notes?`<span class="booking-notes">${esc(b.notes)}</span>`:''}
           </div>
           <div class="booking-actions">
-            <span class="status-badge status-${b.status}">${statusLabel(b.status)}</span>
+            <span class="status-badge status-${esc(b.status)}">${statusLabel(b.status)}</span>
             ${b.status==='pending'?`
-              <button onclick="updateStatus('${b.id}','confirmed')" class="action-btn confirm">✓ אשרי</button>
-              <button onclick="updateStatus('${b.id}','cancelled')" class="action-btn cancel">✕ בטלי</button>`:''}
+              <button onclick="updateStatus('${esc(b.id)}','confirmed')" class="action-btn confirm">✓ אשרי</button>
+              <button onclick="updateStatus('${esc(b.id)}','cancelled')" class="action-btn cancel">✕ בטלי</button>`:''}
             ${b.status==='confirmed'?`
-              <button onclick="updateStatus('${b.id}','cancelled')" class="action-btn cancel">✕ בטלי</button>`:''}
+              <button onclick="updateStatus('${esc(b.id)}','cancelled')" class="action-btn cancel">✕ בטלי</button>`:''}
           </div>
         </div>`).join('')}
     </div>`).join('');
@@ -109,6 +116,21 @@ async function uploadImage(settingKey, fileInputId, previewId, emptyId, statusId
   const file = document.getElementById(fileInputId).files[0];
   if (!file) return;
   const status = document.getElementById(statusId);
+
+  // validate file type
+  const allowed = ['image/jpeg','image/png','image/webp','image/gif'];
+  if (!allowed.includes(file.type)) {
+    status.textContent = 'סוג קובץ לא נתמך. השתמשי ב-JPG, PNG או WebP';
+    status.style.color = 'red';
+    return;
+  }
+  // validate file size (max 5MB)
+  if (file.size > 5 * 1024 * 1024) {
+    status.textContent = 'הקובץ גדול מדי. מקסימום 5MB';
+    status.style.color = 'red';
+    return;
+  }
+
   status.textContent = 'מעלה...';
   status.style.color = 'var(--text-md)';
 

@@ -104,16 +104,24 @@ const success = document.getElementById('form-success');
 
 form.addEventListener('submit', e => {
   e.preventDefault();
-  const btn = form.querySelector('button[type="submit"]');
-  btn.disabled = true;
-  btn.textContent = 'שולח...';
-  setTimeout(() => {
-    success.classList.add('show');
-    form.reset();
-    btn.disabled = false;
-    btn.textContent = 'שלח הודעה';
-    setTimeout(() => success.classList.remove('show'), 6000);
-  }, 900);
+  const name    = document.getElementById('name').value.trim();
+  const phone   = document.getElementById('phone').value.trim();
+  const service = document.getElementById('service').value;
+  const message = document.getElementById('message').value.trim();
+
+  // build WhatsApp message
+  let text = `שלום עדנה, אני ${name}`;
+  if (service) text += `\nמעוניין/ת בטיפול: ${service}`;
+  if (message) text += `\n${message}`;
+  text += `\nטלפון חזרה: ${phone}`;
+
+  // open WhatsApp with the message
+  const waUrl = `https://wa.me/972503138877?text=${encodeURIComponent(text)}`;
+  window.open(waUrl, '_blank');
+
+  success.classList.add('show');
+  form.reset();
+  setTimeout(() => success.classList.remove('show'), 6000);
 });
 
 /* ===========================
