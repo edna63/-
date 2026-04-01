@@ -717,3 +717,39 @@ ul  { list-style: none; }
   .services-grid { grid-template-columns: 1fr; }
   .contact-form { padding: 1.5rem; }
 }
+
+/* ===========================
+   CREDENTIALS
+=========================== */
+.creds { padding: 7rem 0; background: var(--warm); }
+.creds-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.3rem;
+}
+.cred-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 1.6rem;
+  display: flex;
+  gap: 1.2rem;
+  border: 1px solid rgba(107,90,142,.12);
+  transition: transform var(--trans), box-shadow var(--trans);
+}
+.cred-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(107,90,142,.14); }
+.cred-card.cred-featured {
+  grid-column: 1 / -1;
+  border: 2px solid var(--gold-dk);
+  background: linear-gradient(135deg, var(--warm), var(--white));
+}
+.cred-year {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--gold-dk);
+  min-width: 48px;
+  padding-top: .1rem;
+}
+.cred-body h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: .3rem; }
+.cred-inst { font-size: .82rem; color: var(--gold-dk); font-weight: 600; margin-bottom: .4rem; }
+.cred-body p { font-size: .88rem; color: var(--text-md); }
