@@ -23,7 +23,7 @@ fetch(`${_SB_URL}/rest/v1/settings?select=key,value`, {
 /* ===========================
    HORIZONTAL SLIDE NAVIGATION
 =========================== */
-const SLIDE_IDS = ['home', 'services', 'testimonials', 'creds', 'contact'];
+const SLIDE_IDS = ['home', 'services', 'testimonials', 'contact'];
 const track     = document.getElementById('slide-track');
 const header    = document.getElementById('header');
 let   current   = 0;
