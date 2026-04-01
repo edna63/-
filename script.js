@@ -1,4 +1,26 @@
 /* ===========================
+   LOAD IMAGES FROM SUPABASE
+=========================== */
+const _SB_URL = 'https://tymebfuhemhadtyqyntr.supabase.co';
+const _SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR5bWViZnVoZW1oYWR0eXF5bnRyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ5NzMyNzYsImV4cCI6MjA5MDU0OTI3Nn0.BURDVP3mZNgaTcXZyjRtubSpl2Ne3I9I4gA9BpiK2oA';
+
+fetch(`${_SB_URL}/rest/v1/settings?select=key,value`, {
+  headers: { apikey: _SB_KEY, Authorization: `Bearer ${_SB_KEY}` }
+}).then(r=>r.json()).then(rows=>{
+  rows.forEach(row=>{
+    if (row.key==='about_photo' && row.value) {
+      const img = document.querySelector('.about-img-frame img');
+      if (img) img.src = row.value;
+    }
+    if (row.key==='hero_bg' && row.value) {
+      const bg = document.querySelector('.hero-bg');
+      if (bg) bg.style.backgroundImage =
+        `linear-gradient(135deg,rgba(107,90,142,.80) 0%,rgba(42,31,61,.88) 60%), url('${row.value}')`;
+    }
+  });
+}).catch(()=>{});
+
+/* ===========================
    NAVBAR – scroll & mobile
 =========================== */
 const header    = document.getElementById('header');

@@ -4,123 +4,132 @@ const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 const ADMIN_PASSWORD = 'edna2026';
 let allBookings = [];
-let currentFilter = 'all';
 
+/* ── AUTH ── */
 function checkPassword() {
-  const pwd = document.getElementById('password-input').value;
-  if (pwd === ADMIN_PASSWORD) {
-    sessionStorage.setItem('admin', '1');
+  if (document.getElementById('password-input').value === ADMIN_PASSWORD) {
+    sessionStorage.setItem('admin','1');
     document.getElementById('login-screen').style.display = 'none';
     document.getElementById('dashboard').style.display = 'block';
     loadBookings();
+    loadImagePreviews();
   } else {
     document.getElementById('login-error').textContent = 'סיסמה שגויה';
   }
 }
-
-document.getElementById('password-input')?.addEventListener('keydown', e => {
-  if (e.key === 'Enter') checkPassword();
-});
-
-function logout() {
-  sessionStorage.removeItem('admin');
-  location.reload();
+document.getElementById('password-input')?.addEventListener('keydown', e => { if(e.key==='Enter') checkPassword(); });
+function logout() { sessionStorage.removeItem('admin'); location.reload(); }
+if (sessionStorage.getItem('admin')==='1') {
+  document.getElementById('login-screen').style.display='none';
+  document.getElementById('dashboard').style.display='block';
+  loadBookings(); loadImagePreviews();
 }
 
-if (sessionStorage.getItem('admin') === '1') {
-  document.getElementById('login-screen').style.display = 'none';
-  document.getElementById('dashboard').style.display = 'block';
-  loadBookings();
+/* ── TABS ── */
+function showTab(name, btn) {
+  document.getElementById('tab-bookings').style.display = name==='bookings' ? 'block' : 'none';
+  document.getElementById('tab-images').style.display   = name==='images'   ? 'block' : 'none';
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
 }
 
+/* ── BOOKINGS ── */
 async function loadBookings() {
-  const { data, error } = await supabase
-    .from('bookings')
-    .select('*')
-    .order('date', { ascending: true })
-    .order('time', { ascending: true });
-
-  if (error) { document.getElementById('bookings-list').innerHTML = '<p>שגיאה בטעינה</p>'; return; }
-
-  allBookings = data;
+  const { data } = await supabase.from('bookings').select('*').order('date').order('time');
+  allBookings = data || [];
   updateTodayCount();
   renderBookings(allBookings);
 }
-
 function updateTodayCount() {
   const today = new Date().toISOString().split('T')[0];
-  const count = allBookings.filter(b => b.date === today && b.status !== 'cancelled').length;
-  document.getElementById('today-count').textContent = `היום: ${count} תורים`;
+  const n = allBookings.filter(b=>b.date===today && b.status!=='cancelled').length;
+  document.getElementById('today-count').textContent = `היום: ${n} תורים`;
 }
-
 function filterBookings(status, btn) {
-  currentFilter = status;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  document.getElementById('filter-date').value = '';
-  const filtered = status === 'all' ? allBookings : allBookings.filter(b => b.status === status);
-  renderBookings(filtered);
+  document.getElementById('filter-date').value='';
+  renderBookings(status==='all' ? allBookings : allBookings.filter(b=>b.status===status));
 }
-
 function filterByDate() {
-  const date = document.getElementById('filter-date').value;
-  if (!date) { renderBookings(allBookings); return; }
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  renderBookings(allBookings.filter(b => b.date === date));
+  const d = document.getElementById('filter-date').value;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  renderBookings(d ? allBookings.filter(b=>b.date===d) : allBookings);
 }
-
-function renderBookings(bookings) {
-  const list = document.getElementById('bookings-list');
-  if (!bookings.length) {
-    list.innerHTML = '<div class="empty">אין תורים להצגה</div>';
-    return;
-  }
-
-  const grouped = {};
-  bookings.forEach(b => {
-    if (!grouped[b.date]) grouped[b.date] = [];
-    grouped[b.date].push(b);
-  });
-
-  list.innerHTML = Object.entries(grouped).map(([date, items]) => `
+function renderBookings(list) {
+  const el = document.getElementById('bookings-list');
+  if (!list.length) { el.innerHTML='<div class="empty">אין תורים להצגה</div>'; return; }
+  const grouped={};
+  list.forEach(b=>{ if(!grouped[b.date]) grouped[b.date]=[]; grouped[b.date].push(b); });
+  el.innerHTML=Object.entries(grouped).map(([date,items])=>`
     <div class="date-group">
       <h3 class="date-label">${formatDate(date)}</h3>
-      ${items.map(b => `
+      ${items.map(b=>`
         <div class="booking-card status-${b.status}">
           <div class="booking-time">${b.time}</div>
           <div class="booking-info">
             <strong>${b.name}</strong>
             <a href="tel:${b.phone}">${b.phone}</a>
             <span class="booking-service">${b.service}</span>
-            ${b.notes ? `<span class="booking-notes">${b.notes}</span>` : ''}
+            ${b.notes?`<span class="booking-notes">${b.notes}</span>`:''}
           </div>
           <div class="booking-actions">
             <span class="status-badge status-${b.status}">${statusLabel(b.status)}</span>
-            ${b.status === 'pending' ? `
+            ${b.status==='pending'?`
               <button onclick="updateStatus('${b.id}','confirmed')" class="action-btn confirm">✓ אשרי</button>
-              <button onclick="updateStatus('${b.id}','cancelled')" class="action-btn cancel">✕ בטלי</button>
-            ` : ''}
-            ${b.status === 'confirmed' ? `
-              <button onclick="updateStatus('${b.id}','cancelled')" class="action-btn cancel">✕ בטלי</button>
-            ` : ''}
+              <button onclick="updateStatus('${b.id}','cancelled')" class="action-btn cancel">✕ בטלי</button>`:''}
+            ${b.status==='confirmed'?`
+              <button onclick="updateStatus('${b.id}','cancelled')" class="action-btn cancel">✕ בטלי</button>`:''}
           </div>
-        </div>
-      `).join('')}
-    </div>
-  `).join('');
+        </div>`).join('')}
+    </div>`).join('');
 }
-
-async function updateStatus(id, status) {
-  await supabase.from('bookings').update({ status }).eq('id', id);
+async function updateStatus(id,status) {
+  await supabase.from('bookings').update({status}).eq('id',id);
   await loadBookings();
 }
-
-function statusLabel(s) {
-  return { pending: 'ממתין', confirmed: 'מאושר', cancelled: 'בוטל' }[s] || s;
+function statusLabel(s){ return {pending:'ממתין',confirmed:'מאושר',cancelled:'בוטל'}[s]||s; }
+function formatDate(d) {
+  const dt=new Date(d);
+  const days=['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
+  return `יום ${days[dt.getDay()]} · ${dt.toLocaleDateString('he-IL')}`;
 }
 
-function formatDate(dateStr) {
-  const d = new Date(dateStr);
-  const days = ['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
-  return `יום ${days[d.getDay()]} · ${d.toLocaleDateString('he-IL')}`;
+/* ── IMAGE UPLOAD ── */
+async function loadImagePreviews() {
+  const { data } = await supabase.from('settings').select('*');
+  if (!data) return;
+  data.forEach(row => {
+    if (row.key==='about_photo' && row.value) showPreview('img-about-preview','img-about-empty',row.value);
+    if (row.key==='hero_bg'     && row.value) showPreview('img-hero-preview','img-hero-empty',row.value);
+  });
+}
+
+async function uploadImage(settingKey, fileInputId, previewId, emptyId, statusId) {
+  const file = document.getElementById(fileInputId).files[0];
+  if (!file) return;
+  const status = document.getElementById(statusId);
+  status.textContent = 'מעלה...';
+  status.style.color = 'var(--text-md)';
+
+  const ext  = file.name.split('.').pop();
+  const path = `${settingKey}-${Date.now()}.${ext}`;
+
+  const { error: upErr } = await supabase.storage.from('images').upload(path, file, { upsert: true });
+  if (upErr) { status.textContent = 'שגיאה בהעלאה'; status.style.color='red'; return; }
+
+  const { data: { publicUrl } } = supabase.storage.from('images').getPublicUrl(path);
+
+  const { error: dbErr } = await supabase.from('settings').update({ value: publicUrl }).eq('key', settingKey);
+  if (dbErr) { status.textContent = 'שגיאה בשמירה'; status.style.color='red'; return; }
+
+  showPreview(previewId, emptyId, publicUrl);
+  status.textContent = '✅ הועלה בהצלחה!';
+  status.style.color = '#27ae60';
+}
+
+function showPreview(previewId, emptyId, url) {
+  const img = document.getElementById(previewId);
+  img.src = url; img.style.display='block';
+  document.getElementById(emptyId).style.display='none';
 }
