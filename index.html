@@ -69,26 +69,41 @@
 
   <div id="slide-track" dir="ltr">
 
-  <!-- PANEL 0: ראשי -->
+  <!-- PANEL 0 in DOM: טיפולים (שמאל) -->
+  <div class="slide-panel" dir="rtl">
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">הטיפולים שלי</span>
+        <h2 class="section-title">מגוון הטיפולים<br /><em>שאני מציעה</em></h2>
+        <p class="section-subtitle">כל טיפול מותאם אישית לצרכים ולמטרות של המטופל</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card"><div class="service-icon">🤲</div><h3>עיסוי רפואי</h3><p>כאבי גב וצוואר, שכמות, שרירים תפוסים ופריצת דיסק – טיפול ממוקד ומקצועי.</p></div>
+        <div class="service-card"><div class="service-icon">🌿</div><h3>פיברומיאלגיה</h3><p>טיפול מיוחד להקלה על כאב כרוני, עייפות ורגישות יתר במסגרת פיברומיאלגיה.</p></div>
+        <div class="service-card"><div class="service-icon">🔥</div><h3>עיסוי אבנים חמות</h3><p>אבני בזלת חמות להרפיה עמוקה של השרירים, שיפור זרימת הדם ותחושת שלווה.</p></div>
+        <div class="service-card"><div class="service-icon">💎</div><h3>עין הבדולח</h3><p>שיטה ייחודית לתהליכי ריפוי, שינוי ואיזון פנימי – גוף ונפש כאחד.</p></div>
+        <div class="service-card"><div class="service-icon">🌱</div><h3>בריאות טבעית</h3><p>ליווי תהליכי ריפוי ושינוי דרך שיטות בריאות טבעית בדרך היהדות.</p></div>
+        <div class="service-card"><div class="service-icon">🧘</div><h3>הקלה בלחץ וחרדה</h3><p>עיסוי מרגיע ומאזן המסייע להפחתת מתחים, לחץ נפשי וחרדה יומיומית.</p></div>
+        <div class="service-card"><div class="service-icon">🤰</div><h3>עיסוי לנשים הרות</h3><p>עיסוי עדין ומותאם להריון – הקלה על כאבי גב, עייפות ואי נוחות.</p></div>
+        <div class="service-card"><div class="service-icon">🏃</div><h3>עיסוי ספורטאים</h3><p>שיפור ביצועים, מניעת פציעות ושיקום מהיר לאחר פעילות גופנית.</p></div>
+      </div>
+    </div>
+  </section>
+  </div><!-- /PANEL services -->
+
+  <!-- PANEL 1 in DOM: ראשי (ימין) -->
   <div class="slide-panel home-panel" dir="rtl">
   <section class="hero" id="home">
     <div class="hero-bg"></div>
     <div class="home-fs container">
-
-      <!-- שורה 1: מוטו -->
       <div class="hero-motto">"רק אהבה מביאה אהבה"</div>
-
-      <!-- שורה 2: גריד ראשי -->
       <div class="home-main-grid">
-
-        <!-- עמודה 1: תמונה -->
         <div class="home-photo-col">
           <div class="hero-portrait-frame">
             <img id="hero-portrait-img" src="images/edna.jpg" alt="עדנה בן דוד" />
           </div>
         </div>
-
-        <!-- עמודה 2: מידע -->
         <div class="home-info-col">
           <span class="hero-tag">קליניקה לריפוי גוף נפש · 30+ שנות ניסיון</span>
           <h1 class="hero-title">עדנה בן דוד<br /><em>מטפלת מוסמכת</em></h1>
@@ -108,8 +123,6 @@
             <a href="tel:+972503138877" class="btn btn-outline">📞 050-3138877</a>
           </div>
         </div>
-
-        <!-- עמודה 3: המלצות -->
         <div class="home-reviews-col">
           <div class="home-reviews-label">💬 מה אומרים המטופלים</div>
           <div class="home-review-card">"הזמנתי את עדנה לפנק אותי במסאז׳ בביתי. ריפאה לי את הגב התפוס. מסאז׳ לעילא ועילא! ממליצה בחום."</div>
@@ -117,10 +130,7 @@
           <div class="home-review-card">"עדנה מקצועית מאוד, מסורה לעבודתה ואוהבת את מה שהיא עושה. עלתה על כל הציפיות שלנו."</div>
           <div class="home-review-card">"תודה לך. אני מרגיש משהו מיוחד. ידיים זהב 😊"</div>
         </div>
-
-      </div><!-- /home-main-grid -->
-
-      <!-- שורה 3: הסמכות -->
+      </div>
       <div class="home-creds-bar">
         <span class="hcb-label">🎓 הסמכות:</span>
         <span class="hcb-pill">דיפלומה בעיסוי רפואי – ירושלים 1995</span>
@@ -128,75 +138,9 @@
         <span class="hcb-pill">מוסמכת בריאות טבעית ועין הבדולח – אילמה 2017</span>
         <span class="hcb-pill">הסמכה מלאה – רפואה טבעית בדרך היהדות 2018</span>
       </div>
-
     </div>
   </section>
-  </div><!-- /PANEL 0 -->
-
-  <!-- PANEL 1: טיפולים -->
-  <div class="slide-panel" dir="rtl">
-  <section class="services" id="services">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">הטיפולים שלי</span>
-        <h2 class="section-title">מגוון הטיפולים<br /><em>שאני מציעה</em></h2>
-        <p class="section-subtitle">כל טיפול מותאם אישית לצרכים ולמטרות של המטופל</p>
-      </div>
-      <div class="services-grid">
-
-        <div class="service-card">
-          <div class="service-icon">🤲</div>
-          <h3>עיסוי רפואי</h3>
-          <p>כאבי גב וצוואר, שכמות, שרירים תפוסים ופריצת דיסק – טיפול ממוקד ומקצועי.</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">🌿</div>
-          <h3>פיברומיאלגיה</h3>
-          <p>טיפול מיוחד להקלה על כאב כרוני, עייפות ורגישות יתר במסגרת פיברומיאלגיה.</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">🔥</div>
-          <h3>עיסוי אבנים חמות</h3>
-          <p>אבני בזלת חמות להרפיה עמוקה של השרירים, שיפור זרימת הדם ותחושת שלווה.</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">💎</div>
-          <h3>עין הבדולח</h3>
-          <p>שיטה ייחודית לתהליכי ריפוי, שינוי ואיזון פנימי – גוף ונפש כאחד.</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">🌱</div>
-          <h3>בריאות טבעית</h3>
-          <p>ליווי תהליכי ריפוי ושינוי דרך שיטות בריאות טבעית בדרך היהדות.</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">🧘</div>
-          <h3>הקלה בלחץ וחרדה</h3>
-          <p>עיסוי מרגיע ומאזן המסייע להפחתת מתחים, לחץ נפשי וחרדה יומיומית.</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">🤰</div>
-          <h3>עיסוי לנשים הרות</h3>
-          <p>עיסוי עדין ומותאם להריון – הקלה על כאבי גב, עייפות ואי נוחות.</p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">🏃</div>
-          <h3>עיסוי ספורטאים</h3>
-          <p>שיפור ביצועים, מניעת פציעות ושיקום מהיר לאחר פעילות גופנית.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  </div><!-- /PANEL 1 -->
+  </div><!-- /PANEL home -->
   </div><!-- /slide-track -->
 
   <p style="position:fixed;bottom:.5rem;right:1rem;font-size:.7rem;color:rgba(255,255,255,.2);z-index:50">

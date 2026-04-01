@@ -23,10 +23,13 @@ fetch(`${_SB_URL}/rest/v1/settings?select=key,value`, {
 /* ===========================
    HORIZONTAL SLIDE NAVIGATION
 =========================== */
-const SLIDE_IDS = ['home', 'services'];
+// DOM order: [services(idx0, LEFT), home(idx1, RIGHT)]
+// home shown by default → translateX(-100vw)
+// click services → translateX(0) → track moves RIGHT → home exits RIGHT, services enters LEFT ✓
+const SLIDE_IDS = ['services', 'home'];
 const track     = document.getElementById('slide-track');
 const header    = document.getElementById('header');
-let   current   = 0;
+let   current   = 1; // start on home (index 1)
 
 function slideTo(id) {
   const idx = SLIDE_IDS.indexOf(id);
@@ -34,19 +37,14 @@ function slideTo(id) {
   current = idx;
   track.style.transform = `translateX(-${idx * 100}vw)`;
 
-  // scroll current panel to top
   const panels = document.querySelectorAll('.slide-panel');
   if (panels[idx]) panels[idx].scrollTop = 0;
 
-  // active nav link
   document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
   const active = document.querySelector(`.nav-link[href="#${id}"]`);
   if (active) active.classList.add('active');
 
-  // header style: only home panel has transparent header
-  header.classList.toggle('scrolled', idx !== 0);
-
-  // animate cards in the new panel
+  header.classList.toggle('scrolled', id !== 'home');
   animatePanel(idx);
 }
 
@@ -104,11 +102,11 @@ function copyPhone(btn) {
 
 // Fix RTL bug: force scroll to start + show panel 0
 document.addEventListener('DOMContentLoaded', () => {
-  // reset any RTL-caused scroll offset
   document.documentElement.scrollLeft = 0;
   document.body.scrollLeft = 0;
-  track.style.transform = 'translateX(0)';
-  animatePanel(0);
+  // home is index 1 in DOM → translateX(-100vw)
+  track.style.transform = 'translateX(-100vw)';
+  animatePanel(1);
 });
 
 /* ===========================
