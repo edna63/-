@@ -120,7 +120,7 @@ async function uploadImage(settingKey, fileInputId, previewId, emptyId, statusId
 
   const { data: { publicUrl } } = supabase.storage.from('images').getPublicUrl(path);
 
-  const { error: dbErr } = await supabase.from('settings').update({ value: publicUrl }).eq('key', settingKey);
+  const { error: dbErr } = await supabase.from('settings').upsert({ key: settingKey, value: publicUrl }, { onConflict: 'key' });
   if (dbErr) { status.textContent = 'שגיאה בשמירה'; status.style.color='red'; return; }
 
   showPreview(previewId, emptyId, publicUrl);
