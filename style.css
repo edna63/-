@@ -743,6 +743,83 @@ ul  { list-style: none; }
 }
 
 /* ===========================
+   HERO MOTTO
+=========================== */
+.hero-motto {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-weight: 600;
+  color: var(--gold-dk);
+  letter-spacing: .02em;
+  margin-bottom: 2.5rem;
+  padding-top: .5rem;
+  opacity: .92;
+}
+
+/* ===========================
+   HOME TESTIMONIALS (panel 0)
+=========================== */
+.home-testimonials {
+  background: var(--warm);
+  padding: 3rem 0 2.5rem;
+}
+.home-testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.4rem;
+}
+.home-testimonial-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 1.6rem 1.8rem;
+  border-right: 4px solid var(--gold-lt);
+  font-size: 1rem;
+  color: var(--text-md);
+  line-height: 1.8;
+  font-style: italic;
+}
+.home-testimonial-card.featured {
+  border-right-color: var(--gold-dk);
+  background: linear-gradient(135deg, #f5f0fc, var(--white));
+  color: var(--text);
+}
+
+/* ===========================
+   HOME CREDS (panel 0)
+=========================== */
+.home-creds {
+  padding: 2.5rem 0 3rem;
+}
+.home-creds-grid {
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+  margin-top: 1.5rem;
+}
+.home-cred-item {
+  display: flex;
+  align-items: baseline;
+  gap: 1.2rem;
+  padding: .9rem 1.2rem;
+  background: var(--white);
+  border-radius: 12px;
+  border: 1px solid var(--gold-lt);
+}
+.hc-year {
+  font-weight: 700;
+  color: var(--gold-dk);
+  font-size: 1rem;
+  min-width: 3rem;
+  flex-shrink: 0;
+}
+.hc-text {
+  color: var(--text-md);
+  font-size: .95rem;
+  line-height: 1.6;
+}
+
+/* ===========================
    WHATSAPP FLOAT
 =========================== */
 .whatsapp-float {
