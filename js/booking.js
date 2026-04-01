@@ -85,6 +85,10 @@ document.getElementById('book-form').addEventListener('submit', async (e) => {
   if (error) {
     showError('שגיאה בשמירת התור. נסי שוב.');
   } else {
+    // notify Edna via WhatsApp
+    const msg = `🔔 בקשת תור חדשה!\nשם: ${booking.name}\nטלפון: ${booking.phone}\nטיפול: ${booking.service}\nתאריך: ${booking.date}\nשעה: ${booking.time}${booking.notes ? '\nהערות: '+booking.notes : ''}`;
+    window.open(`https://wa.me/972503138877?text=${encodeURIComponent(msg)}`, '_blank');
+
     document.getElementById('book-form').style.display = 'none';
     document.getElementById('form-success').style.display = 'block';
   }
