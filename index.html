@@ -49,6 +49,22 @@
   }
   </script>
 
+  <!-- FAQ Schema – מוצג ישירות בגוגל ובבינה מלאכותית -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"מה כולל עיסוי רפואי?","acceptedAnswer":{"@type":"Answer","text":"עיסוי רפואי של עדנה בן דוד מתמקד בשחרור שרירים תפוסים, טיפול בכאבי גב וצוואר, פריצות דיסק ושיקום לאחר פגיעות. הטיפול מותאם אישית ומשלב טכניקות עיסוי עומק ועיסוי שוודי."}},
+      {"@type":"Question","name":"האם עיסוי אבנים חמות מתאים לכאבי גב?","acceptedAnswer":{"@type":"Answer","text":"כן. אבני הבזלת החמות מרפות את השרירים לעומק, משפרות זרימת דם ומפחיתות כאב כרוני בגב ובצוואר. הטיפול נמשך כ-60-90 דקות."}},
+      {"@type":"Question","name":"מה זה עין הבדולח?","acceptedAnswer":{"@type":"Answer","text":"עין הבדולח היא שיטה טיפולית ייחודית לשינוי תודעתי ואיזון פנימי. המטפלת עדנה בן דוד מוסמכת ומנוסה בשיטה זו מאז 2017 דרך מכללת אילמה לרפואה טבעית."}},
+      {"@type":"Question","name":"האם יש טיפול לפיברומיאלגיה?","acceptedAnswer":{"@type":"Answer","text":"עדנה בן דוד מתמחה בטיפול בפיברומיאלגיה דרך שילוב של עיסוי עדין, טכניקות להפחתת רגישות יתר ובריאות טבעית. הטיפול מסייע להפחתת כאב, עייפות ושיפור איכות השינה."}},
+      {"@type":"Question","name":"האם מתבצעים טיפולים בבית הלקוח?","acceptedAnswer":{"@type":"Answer","text":"כן, עדנה מגיעה לבית הלקוח לטיפולי עיסוי רפואי ועיסוי הריון. לתיאום: 050-3138877 או וואטסאפ."}},
+      {"@type":"Question","name":"מה ההבדל בין בריאות טבעית לעיסוי רפואי?","acceptedAnswer":{"@type":"Answer","text":"עיסוי רפואי עוסק בשחרור פיזי של השרירים והרקמות, בעוד בריאות טבעית בדרך היהדות היא תהליך הוליסטי המשלב גוף ונפש, תזונה, מחשבה ורוח לריפוי עמוק ומתמשך."}}
+    ]
+  }
+  </script>
+
   <link rel="stylesheet" href="style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -78,16 +94,143 @@
         <h2 class="section-title">מגוון הטיפולים<br /><em>שאני מציעה</em></h2>
         <p class="section-subtitle">כל טיפול מותאם אישית לצרכים ולמטרות של המטופל</p>
       </div>
-      <div class="services-grid">
-        <div class="service-card"><div class="service-icon">🤲</div><h3>עיסוי רפואי</h3><p>כאבי גב וצוואר, שכמות, שרירים תפוסים ופריצת דיסק – טיפול ממוקד ומקצועי.</p></div>
-        <div class="service-card"><div class="service-icon">🌿</div><h3>פיברומיאלגיה</h3><p>טיפול מיוחד להקלה על כאב כרוני, עייפות ורגישות יתר במסגרת פיברומיאלגיה.</p></div>
-        <div class="service-card"><div class="service-icon">🔥</div><h3>עיסוי אבנים חמות</h3><p>אבני בזלת חמות להרפיה עמוקה של השרירים, שיפור זרימת הדם ותחושת שלווה.</p></div>
-        <div class="service-card"><div class="service-icon">💎</div><h3>עין הבדולח</h3><p>שיטה ייחודית לתהליכי ריפוי, שינוי ואיזון פנימי – גוף ונפש כאחד.</p></div>
-        <div class="service-card"><div class="service-icon">🌱</div><h3>בריאות טבעית</h3><p>ליווי תהליכי ריפוי ושינוי דרך שיטות בריאות טבעית בדרך היהדות.</p></div>
-        <div class="service-card"><div class="service-icon">🧘</div><h3>הקלה בלחץ וחרדה</h3><p>עיסוי מרגיע ומאזן המסייע להפחתת מתחים, לחץ נפשי וחרדה יומיומית.</p></div>
-        <div class="service-card"><div class="service-icon">🤰</div><h3>עיסוי לנשים הרות</h3><p>עיסוי עדין ומותאם להריון – הקלה על כאבי גב, עייפות ואי נוחות.</p></div>
-        <div class="service-card"><div class="service-icon">🏃</div><h3>עיסוי ספורטאים</h3><p>שיפור ביצועים, מניעת פציעות ושיקום מהיר לאחר פעילות גופנית.</p></div>
+      <div class="accordion-list">
+
+        <div class="acc-item">
+          <button class="acc-head" onclick="toggleAcc(this)">
+            <span>🤲 עיסוי רפואי</span><span class="acc-arrow">▾</span>
+          </button>
+          <div class="acc-body">
+            <p>טיפול ממוקד בכאבי גב וצוואר, שכמות תפוסות, שרירים קשוחים ופריצות דיסק. משלב עיסוי עומק ועיסוי שוודי.</p>
+            <div class="acc-meta">
+              <span>👤 מתאים ל: כל גיל, כאב כרוני ואקוטי</span>
+              <span>⏱ משך: 45–90 דקות</span>
+              <span>✨ לאחר הטיפול: שחרור, גמישות, הפחתת כאב</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-head" onclick="toggleAcc(this)">
+            <span>🌿 פיברומיאלגיה</span><span class="acc-arrow">▾</span>
+          </button>
+          <div class="acc-body">
+            <p>טיפול מיוחד ועדין לכאב כרוני מפושט, עייפות קשה ורגישות יתר. הגישה מותאמת לרמת הכאב של המטופל בכל ביקור.</p>
+            <div class="acc-meta">
+              <span>👤 מתאים ל: מאובחנים בפיברומיאלגיה, כאב כרוני</span>
+              <span>⏱ משך: 60 דקות</span>
+              <span>✨ לאחר הטיפול: הקלה בכאב, שיפור שינה, רוגע</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-head" onclick="toggleAcc(this)">
+            <span>🔥 עיסוי אבנים חמות</span><span class="acc-arrow">▾</span>
+          </button>
+          <div class="acc-body">
+            <p>אבני בזלת וולקנית חמות מונחות על נקודות מפתח בגוף ומשמשות להעמקת העיסוי. הרפיה עמוקה ושיפור זרימת הדם.</p>
+            <div class="acc-meta">
+              <span>👤 מתאים ל: מתח גבוה, כאב שרירים, קור כרוני</span>
+              <span>⏱ משך: 75–90 דקות</span>
+              <span>✨ לאחר הטיפול: חום נעים, שלווה עמוקה, גמישות</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-head" onclick="toggleAcc(this)">
+            <span>💎 עין הבדולח</span><span class="acc-arrow">▾</span>
+          </button>
+          <div class="acc-body">
+            <p>שיטה טיפולית ייחודית לשינוי תבניות חשיבה, שחרור חסמים רגשיים ואיזון פנימי עמוק. מוסמכת מכללת אילמה 2017.</p>
+            <div class="acc-meta">
+              <span>👤 מתאים ל: מעברי חיים, חרדה, תקיעות, שינוי</span>
+              <span>⏱ משך: 60–90 דקות</span>
+              <span>✨ לאחר הטיפול: בהירות, שחרור, אנרגיה חדשה</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-head" onclick="toggleAcc(this)">
+            <span>🌱 בריאות טבעית בדרך היהדות</span><span class="acc-arrow">▾</span>
+          </button>
+          <div class="acc-body">
+            <p>ליווי הוליסטי המשלב גוף, נפש ורוח דרך עקרונות היהדות. כולל הנחיה בתזונה, מחשבה חיובית ואורח חיים מאוזן.</p>
+            <div class="acc-meta">
+              <span>👤 מתאים ל: כל מי שמחפש שינוי עמוק ומשמעות</span>
+              <span>⏱ משך: 60 דקות</span>
+              <span>✨ לאחר הטיפול: כיוון ברור, שקט פנימי, כוח</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-head" onclick="toggleAcc(this)">
+            <span>🧘 הקלה בלחץ וחרדה</span><span class="acc-arrow">▾</span>
+          </button>
+          <div class="acc-body">
+            <p>עיסוי מרגיע המשלב לחיצות עדינות, נשימה ועבודה על נקודות מתח. מסייע להורדת קורטיזול ולאיזון מערכת העצבים.</p>
+            <div class="acc-meta">
+              <span>👤 מתאים ל: לחץ עבודה, חרדה, שחיקה</span>
+              <span>⏱ משך: 60 דקות</span>
+              <span>✨ לאחר הטיפול: רוגע, שינה טובה, קלילות</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-head" onclick="toggleAcc(this)">
+            <span>🤰 עיסוי לנשים הרות</span><span class="acc-arrow">▾</span>
+          </button>
+          <div class="acc-body">
+            <p>עיסוי עדין ובטוח המותאם לכל שלב בהריון. מקל על כאבי גב תחתון, נפיחות, עייפות ואי נוחות כללית.</p>
+            <div class="acc-meta">
+              <span>👤 מתאים ל: טרימסטר שני ושלישי (מאישור רופא)</span>
+              <span>⏱ משך: 45–60 דקות</span>
+              <span>✨ לאחר הטיפול: הקלה, שינה טובה, חיבור לתינוק</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="acc-item">
+          <button class="acc-head" onclick="toggleAcc(this)">
+            <span>🏃 עיסוי ספורטאים</span><span class="acc-arrow">▾</span>
+          </button>
+          <div class="acc-body">
+            <p>עיסוי ממוקד לשיפור ביצועים, מניעת פציעות ושיקום מהיר. עובד על קבוצות שרירים ספציפיות לפי ענף הספורט.</p>
+            <div class="acc-meta">
+              <span>👤 מתאים ל: ספורטאים חובבים ומקצוענים</span>
+              <span>⏱ משך: 60–90 דקות</span>
+              <span>✨ לאחר הטיפול: שיקום מהיר, גמישות, מניעת פציעות</span>
+            </div>
+          </div>
+        </div>
+
       </div>
+
+      <!-- FAQ -->
+      <div class="services-faq">
+        <h3 class="faq-title">שאלות נפוצות</h3>
+        <div class="acc-item">
+          <button class="acc-head" onclick="toggleAcc(this)"><span>האם מגיעים לבית הלקוח?</span><span class="acc-arrow">▾</span></button>
+          <div class="acc-body"><p>כן! עדנה מגיעה לביתך לטיפולי עיסוי רפואי, עיסוי הריון ועוד. לתיאום — <strong>050-3138877</strong>.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head" onclick="toggleAcc(this)"><span>כמה עולה טיפול?</span><span class="acc-arrow">▾</span></button>
+          <div class="acc-body"><p>המחיר תלוי בסוג הטיפול ומשכו. צרו קשר לקבלת פרטים והצעת מחיר אישית.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head" onclick="toggleAcc(this)"><span>כמה טיפולים צריך?</span><span class="acc-arrow">▾</span></button>
+          <div class="acc-body"><p>לכאב אקוטי לרוב מספיקים 1–3 טיפולים. לכאב כרוני ופיברומיאלגיה מומלץ טיפול שבועי קבוע לתוצאות מיטביות.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-head" onclick="toggleAcc(this)"><span>האם העיסוי כואב?</span><span class="acc-arrow">▾</span></button>
+          <div class="acc-body"><p>עיסוי רפואי עלול לגרום לאי נוחות קלה באזורים תפוסים — זה נורמלי. עדנה תמיד מתאימה את העוצמה לפי הצורך והרגשתך.</p></div>
+        </div>
+      </div>
+
     </div>
   </section>
   </div><!-- /PANEL services -->
@@ -146,13 +289,13 @@
     <a href="admin.html" style="color:inherit">© 2026 עדנה</a>
   </p>
 
-  <a href="https://www.facebook.com/dnhbndwd.416341?locale=he_IL" class="facebook-float" target="_blank" aria-label="Facebook">
+  <button class="facebook-float" id="fb-btn" aria-label="Facebook" onclick="safeOpen('fb')">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-  </a>
+  </button>
 
-  <a href="https://wa.me/972503138877" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+  <button class="whatsapp-float" id="wa-btn" aria-label="WhatsApp" onclick="safeOpen('wa')">
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-  </a>
+  </button>
 
   <script src="script.js"></script>
 </body>

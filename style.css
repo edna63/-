@@ -569,6 +569,29 @@ ul  { list-style: none; }
   background: var(--cream);
 }
 
+/* ===========================
+   ACCORDION
+=========================== */
+.accordion-list, .services-faq { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1.5rem; }
+.services-faq { margin-top: 2rem; }
+.faq-title { font-size: 1.1rem; font-weight: 700; color: var(--gold-dk); margin-bottom: .8rem; }
+.acc-item { border: 1px solid var(--gold-lt); border-radius: 12px; overflow: hidden; background: var(--white); }
+.acc-head {
+  width: 100%; display: flex; justify-content: space-between; align-items: center;
+  padding: .9rem 1.2rem; background: none; border: none; cursor: pointer;
+  font-size: .95rem; font-weight: 600; color: var(--text); text-align: right;
+  font-family: inherit; gap: 1rem; transition: background var(--trans);
+}
+.acc-head:hover { background: var(--warm); }
+.acc-item.open .acc-head { background: var(--warm); color: var(--gold-dk); }
+.acc-arrow { font-size: 1rem; transition: transform .3s; flex-shrink: 0; }
+.acc-item.open .acc-arrow { transform: rotate(180deg); }
+.acc-body { max-height: 0; overflow: hidden; transition: max-height .35s ease; padding: 0 1.2rem; }
+.acc-item.open .acc-body { padding-bottom: 1rem; }
+.acc-body p { color: var(--text-md); font-size: .9rem; line-height: 1.7; margin-top: .6rem; }
+.acc-meta { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .8rem; }
+.acc-meta span { font-size: .78rem; background: var(--warm); color: var(--text-md); padding: .3rem .8rem; border-radius: 999px; border: 1px solid var(--gold-lt); }
+
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));

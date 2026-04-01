@@ -1,4 +1,46 @@
 /* ===========================
+   SECURITY: Link obfuscation + rate limiting
+   Links are built at runtime from encoded parts — not visible to scrapers
+=========================== */
+const _cl = { wa: 0, fb: 0 };
+const _rl = 3000; // ms between allowed clicks
+
+function _dec(s) { return atob(s); }
+
+// Encoded contact refs (base64, split) — bots can't scrape static HTML
+const _refs = {
+  wa: () => _dec('aHR0cHM6Ly93YS5tZS85NzI1MDMxMzg4Nzc='),
+  fb: () => _dec('aHR0cHM6Ly93d3cuZmFjZWJvb2suY29tL2RuaGJuZHdkLjQxNjM0MT9sb2NhbGU9aGVfSUw=')
+};
+
+function safeOpen(type) {
+  const now = Date.now();
+  if (now - _cl[type] < _rl) return; // rate limit
+  _cl[type] = now;
+  window.open(_refs[type](), '_blank', 'noopener,noreferrer');
+}
+
+/* ===========================
+   ACCORDION
+=========================== */
+function toggleAcc(btn) {
+  const item = btn.closest('.acc-item');
+  const body = item.querySelector('.acc-body');
+  const isOpen = item.classList.contains('open');
+  // close all others in same list
+  btn.closest('.accordion-list, .services-faq')
+     .querySelectorAll('.acc-item.open')
+     .forEach(el => {
+       el.classList.remove('open');
+       el.querySelector('.acc-body').style.maxHeight = '0';
+     });
+  if (!isOpen) {
+    item.classList.add('open');
+    body.style.maxHeight = body.scrollHeight + 'px';
+  }
+}
+
+/* ===========================
    LOAD IMAGES FROM SUPABASE
 =========================== */
 const _SB_URL = 'https://tymebfuhemhadtyqyntr.supabase.co';
