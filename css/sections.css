@@ -1,0 +1,73 @@
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(43,154,148,.82) 0%,rgba(26,46,43,.85) 60%),
+  url('https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?w=1600&auto=format&fit=crop') center/cover no-repeat;
+}
+.hero-content{position:relative;z-index:1;max-width:640px;padding-block:9rem 5rem}
+.hero-bsd{font-size:.85rem;color:rgba(255,255,255,.7);margin-bottom:.5rem;letter-spacing:.05em}
+.hero-title{font-family:'Frank Ruhl Libre',serif;font-size:clamp(2.6rem,6vw,4.5rem);line-height:1.15;color:var(--white);margin-bottom:1rem}
+.hero-title em{color:var(--teal-lt);font-style:normal}
+.hero-sub{font-size:1.05rem;color:rgba(255,255,255,.82);margin-bottom:2.2rem}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+
+/* ABOUT */
+.about{padding:6rem 0;background:var(--white)}
+.about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:4rem;align-items:center}
+.about-content .section-title{margin-bottom:1rem}
+.about-content p{color:var(--text-md);font-size:1.02rem;margin-bottom:.8rem}
+.about-list{margin:1.2rem 0 2rem;display:flex;flex-direction:column;gap:.45rem}
+.about-list li{font-size:.95rem;color:var(--text-md);padding:.35rem 0;border-bottom:1px dashed var(--teal-lt)}
+.about-visual{display:flex;align-items:center;justify-content:center}
+.visual-box{
+  background:linear-gradient(135deg,var(--teal-dk),var(--teal));
+  border-radius:var(--radius);padding:2.5rem 2rem;
+  text-align:center;color:var(--white);width:100%;max-width:280px;
+  box-shadow:0 16px 40px rgba(43,154,148,.3);
+}
+.visual-name{font-family:'Frank Ruhl Libre',serif;font-size:1.6rem;font-weight:700;margin-bottom:.5rem}
+.visual-box p{font-size:.92rem;opacity:.85;margin-bottom:.3rem}
+.visual-phone{font-size:1.3rem;font-weight:700;margin-top:.8rem !important;opacity:1 !important}
+
+/* SERVICES */
+.services{padding:6rem 0;background:var(--cream)}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.3rem}
+.service-card{
+  background:var(--white);border-radius:var(--radius);
+  padding:1.8rem 1.6rem;border:1px solid rgba(58,175,169,.12);
+  transition:transform var(--trans),box-shadow var(--trans);
+}
+.service-card:hover{transform:translateY(-5px);box-shadow:0 14px 36px rgba(26,46,43,.10)}
+.service-icon{font-size:2rem;margin-bottom:.9rem}
+.service-card h3{font-size:1.05rem;font-weight:700;margin-bottom:.5rem;color:var(--text)}
+.service-card p{font-size:.9rem;color:var(--text-md)}
+
+/* CONTACT */
+.contact{padding:6rem 0;background:var(--teal-dk)}
+.contact-inner{text-align:center}
+.contact .section-tag{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.3);color:var(--teal-lt)}
+.contact .section-title{color:var(--white);margin-bottom:.7rem}
+.contact-cards{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem}
+.contact-card{
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  border-radius:var(--radius);padding:1.6rem 1.8rem;
+  display:flex;flex-direction:column;align-items:center;gap:.4rem;
+  color:var(--white);min-width:180px;
+  transition:background var(--trans),transform var(--trans);
+}
+.contact-card:hover{background:rgba(255,255,255,.18);transform:translateY(-3px)}
+.cc-icon{font-size:1.8rem}
+.contact-card strong{font-size:1rem;font-weight:700}
+.contact-card span{font-size:.85rem;opacity:.8;text-align:center}
+
+@media(max-width:768px){
+  .about-grid{grid-template-columns:1fr;gap:2.5rem}
+  .about-visual{order:-1}
+  .contact-cards{flex-direction:column;align-items:center}
+  .contact-card{width:100%;max-width:300px}
+}
+@media(max-width:480px){
+  .hero-actions{flex-direction:column}
+  .services-grid{grid-template-columns:1fr}
+}

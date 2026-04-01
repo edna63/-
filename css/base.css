@@ -1,0 +1,100 @@
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --teal:#3aafa9;
+  --teal-dk:#2b9a94;
+  --teal-lt:#b2dfdb;
+  --gold:#c8a96e;
+  --gold-dk:#8a6a3a;
+  --cream:#faf7f2;
+  --warm:#f0ede6;
+  --text:#1a2e2b;
+  --text-md:#4a6360;
+  --text-lt:#8aa8a5;
+  --white:#fff;
+  --shadow:0 4px 24px rgba(26,46,43,.10);
+  --radius:14px;
+  --trans:.3s ease;
+}
+
+html{scroll-behavior:smooth}
+body{font-family:'Heebo',sans-serif;background:var(--cream);color:var(--text);line-height:1.7;direction:rtl}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+
+.container{width:min(1160px,92%);margin-inline:auto}
+
+.section-tag{
+  display:inline-block;font-size:.78rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--teal-dk);background:var(--warm);
+  border:1px solid var(--teal-lt);
+  padding:.28rem .9rem;border-radius:999px;margin-bottom:.9rem;
+}
+
+.section-title{
+  font-family:'Frank Ruhl Libre',serif;
+  font-size:clamp(1.8rem,4vw,2.8rem);
+  line-height:1.25;color:var(--text);
+}
+.section-title em{color:var(--teal-dk);font-style:normal}
+
+.section-header{text-align:center;margin-bottom:3rem}
+
+.btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.8rem 2rem;border-radius:999px;
+  font-size:.97rem;font-weight:700;cursor:pointer;
+  border:2px solid transparent;transition:var(--trans);font-family:inherit;
+}
+.btn-primary{background:var(--teal-dk);color:var(--white);border-color:var(--teal-dk)}
+.btn-primary:hover{background:var(--teal);border-color:var(--teal);transform:translateY(-2px);box-shadow:0 8px 20px rgba(43,154,148,.25)}
+.btn-outline{background:transparent;color:var(--white);border-color:rgba(255,255,255,.6)}
+.btn-outline:hover{background:rgba(255,255,255,.15);border-color:var(--white)}
+
+/* HEADER */
+.header{position:fixed;top:0;inset-inline:0;z-index:100;padding:1.1rem 0;transition:background var(--trans),box-shadow var(--trans)}
+.header.scrolled{background:rgba(250,247,242,.96);backdrop-filter:blur(12px);box-shadow:var(--shadow);padding:.7rem 0}
+.nav{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'Frank Ruhl Libre',serif;font-size:1.5rem;color:var(--white);font-weight:700;transition:color var(--trans)}
+.header.scrolled .nav-logo{color:var(--teal-dk)}
+.nav-menu{display:flex;gap:1.8rem}
+.nav-link{font-size:.93rem;font-weight:600;color:rgba(255,255,255,.9);transition:color var(--trans);position:relative}
+.nav-link::after{content:'';position:absolute;bottom:-3px;right:0;width:0;height:2px;background:var(--teal-lt);transition:width var(--trans)}
+.nav-link:hover::after{width:100%}
+.header.scrolled .nav-link{color:var(--text-md)}
+.header.scrolled .nav-link::after{background:var(--teal-dk)}
+.nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.nav-toggle span{display:block;width:25px;height:2px;background:var(--white);border-radius:2px;transition:var(--trans)}
+.header.scrolled .nav-toggle span{background:var(--text)}
+
+/* FOOTER */
+.footer{background:var(--text);padding:2.5rem 0;text-align:center}
+.footer p{color:rgba(255,255,255,.6);font-size:.9rem;margin-bottom:.3rem}
+.footer strong{color:var(--teal-lt)}
+.footer-copy{font-size:.78rem;color:rgba(255,255,255,.3) !important}
+
+/* WHATSAPP */
+.wa-float{
+  position:fixed;bottom:2rem;left:2rem;
+  width:54px;height:54px;border-radius:50%;
+  background:#25D366;color:var(--white);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 18px rgba(37,211,102,.4);
+  z-index:90;transition:transform var(--trans),box-shadow var(--trans);
+}
+.wa-float:hover{transform:scale(1.12);box-shadow:0 8px 28px rgba(37,211,102,.5)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-menu{
+    position:fixed;inset-block:0;inset-inline-end:-100%;
+    width:min(280px,85%);background:var(--white);
+    flex-direction:column;padding:5rem 2rem 2rem;gap:0;
+    box-shadow:-4px 0 24px rgba(0,0,0,.12);
+    transition:inset-inline-end var(--trans);z-index:99;
+  }
+  .nav-menu.open{inset-inline-end:0}
+  .nav-link{color:var(--text) !important;width:100%;padding:.85rem 0;border-bottom:1px solid var(--warm);font-size:.98rem}
+  .nav-toggle{display:flex;z-index:100}
+}
