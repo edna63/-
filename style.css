@@ -758,6 +758,52 @@ ul  { list-style: none; }
 }
 
 /* ===========================
+   HOME SERVICES STRIP (panel 0)
+=========================== */
+.home-services {
+  padding: 2rem 0 1.5rem;
+}
+.home-services-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: .8rem;
+}
+.hs-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .5rem;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 14px;
+  padding: 1rem .6rem;
+  cursor: pointer;
+  transition: background var(--trans), transform var(--trans);
+  backdrop-filter: blur(6px);
+}
+.hs-card:hover {
+  background: rgba(255,255,255,.22);
+  transform: translateY(-3px);
+}
+.hs-icon { font-size: 1.6rem; }
+.hs-name {
+  font-size: .78rem;
+  font-weight: 500;
+  color: rgba(255,255,255,.9);
+  text-align: center;
+  line-height: 1.3;
+}
+@media (max-width: 768px) {
+  .home-services-grid { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 480px) {
+  .home-services-grid { grid-template-columns: repeat(4, 1fr); gap: .5rem; }
+  .hs-card { padding: .7rem .4rem; }
+  .hs-icon { font-size: 1.3rem; }
+  .hs-name { font-size: .7rem; }
+}
+
+/* ===========================
    HOME TESTIMONIALS (panel 0)
 =========================== */
 .home-testimonials {
