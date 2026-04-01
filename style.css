@@ -4,18 +4,18 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --gold:    #c8a96e;
-  --gold-lt: #e8d5b0;
-  --gold-dk: #8a6a3a;
-  --green:   #4a7c59;
-  --green-lt:#7aaa88;
-  --cream:   #faf7f2;
-  --warm:    #f5ede0;
-  --text:    #2c2416;
-  --text-md: #5a4a35;
-  --text-lt: #9a8a7a;
+  --gold:    #b59fd4;
+  --gold-lt: #d4c8e8;
+  --gold-dk: #6b5a8e;
+  --green:   #7c6b9e;
+  --green-lt:#a899c4;
+  --cream:   #faf8fc;
+  --warm:    #f0ecf8;
+  --text:    #2a1f3d;
+  --text-md: #5a4e70;
+  --text-lt: #9a8fb0;
   --white:   #ffffff;
-  --shadow:  0 4px 30px rgba(44,36,22,.10);
+  --shadow:  0 4px 30px rgba(42,31,61,.10);
   --radius:  16px;
   --trans:   .3s ease;
 }
@@ -209,8 +209,8 @@ ul  { list-style: none; }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(135deg, rgba(74,124,89,.85) 0%, rgba(44,36,22,.8) 60%),
-    url('https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=1600&auto=format&fit=crop') center/cover no-repeat;
+    linear-gradient(135deg, rgba(107,90,142,.80) 0%, rgba(42,31,61,.88) 60%),
+    url('images/sunset1.jpg') center/cover no-repeat;
 }
 
 .hero-content {
@@ -326,15 +326,15 @@ ul  { list-style: none; }
   overflow: hidden;
   background: var(--warm);
   aspect-ratio: 4/5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border: 4px solid var(--gold-lt);
+  box-shadow: 0 16px 48px rgba(107,90,142,.2);
 }
 
-.about-img-placeholder {
+.about-img-frame img {
   width: 100%;
-  padding: 2rem;
-  opacity: .5;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 
 .about-badge {
