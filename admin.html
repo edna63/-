@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ניהול תורים | עדנה בן דוד</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;700&family=Frank+Ruhl+Libre:wght@400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <div class="login-screen" id="login-screen">
+    <div class="login-box">
+      <h1>🔐 כניסה לניהול תורים</h1>
+      <p>עדנה בן דוד – קליניקה לריפוי גוף נפש</p>
+      <div class="form-group">
+        <label>סיסמה</label>
+        <input type="password" id="password-input" placeholder="הכניסי סיסמה" />
+      </div>
+      <button class="btn btn-primary btn-full" onclick="checkPassword()">כניסה</button>
+      <p class="login-error" id="login-error"></p>
+    </div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="dashboard" id="dashboard" style="display:none">
+
+    <header class="admin-header">
+      <div class="container admin-nav">
+        <h1>📅 ניהול תורים</h1>
+        <div class="admin-nav-right">
+          <span id="today-count"></span>
+          <a href="index.html" class="btn btn-outline-dark">← האתר</a>
+          <button class="btn btn-outline-dark" onclick="logout()">יציאה</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="container dashboard-body">
+
+      <div class="filters">
+        <button class="filter-btn active" onclick="filterBookings('all', this)">הכל</button>
+        <button class="filter-btn" onclick="filterBookings('pending', this)">ממתין לאישור</button>
+        <button class="filter-btn" onclick="filterBookings('confirmed', this)">מאושר</button>
+        <button class="filter-btn" onclick="filterBookings('cancelled', this)">בוטל</button>
+        <input type="date" id="filter-date" onchange="filterByDate()" class="date-filter" />
+      </div>
+
+      <div id="bookings-list" class="bookings-list">
+        <div class="loading">טוען תורים...</div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

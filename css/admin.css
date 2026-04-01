@@ -1,0 +1,37 @@
+.login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--cream)}
+.login-box{background:var(--white);border-radius:var(--radius);padding:2.5rem;width:min(400px,92%);box-shadow:var(--shadow);text-align:center}
+.login-box h1{font-size:1.4rem;margin-bottom:.4rem}
+.login-box p{color:var(--text-md);font-size:.9rem;margin-bottom:1.5rem}
+.login-error{color:#c0392b;font-size:.88rem;margin-top:.8rem;min-height:1.2em}
+.admin-header{background:var(--teal-dk);padding:1rem 0;position:sticky;top:0;z-index:10}
+.admin-nav{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.admin-nav h1{color:var(--white);font-size:1.2rem;margin:0}
+.admin-nav-right{display:flex;align-items:center;gap:.8rem}
+.admin-nav-right span{color:rgba(255,255,255,.8);font-size:.88rem}
+.dashboard-body{padding:2rem 0}
+.filters{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:2rem;align-items:center}
+.filter-btn{padding:.45rem 1rem;border:1.5px solid var(--teal-lt);border-radius:999px;background:var(--white);font-family:inherit;font-size:.85rem;font-weight:600;cursor:pointer;color:var(--teal-dk);transition:var(--trans)}
+.filter-btn.active,.filter-btn:hover{background:var(--teal-dk);color:var(--white);border-color:var(--teal-dk)}
+.date-filter{padding:.45rem .8rem;border:1.5px solid var(--teal-lt);border-radius:8px;font-family:inherit;font-size:.85rem;color:var(--text);background:var(--white)}
+.date-group{margin-bottom:2rem}
+.date-label{font-size:1rem;font-weight:700;color:var(--teal-dk);margin-bottom:.8rem;padding-bottom:.4rem;border-bottom:2px solid var(--teal-lt)}
+.booking-card{background:var(--white);border-radius:12px;padding:1.2rem;display:flex;align-items:flex-start;gap:1rem;margin-bottom:.8rem;border-right:4px solid var(--teal-lt);box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.booking-card.status-confirmed{border-right-color:#27ae60}
+.booking-card.status-cancelled{border-right-color:#e74c3c;opacity:.6}
+.booking-time{font-family:'Frank Ruhl Libre',serif;font-size:1.4rem;font-weight:700;color:var(--teal-dk);min-width:52px}
+.booking-info{flex:1;display:flex;flex-direction:column;gap:.2rem}
+.booking-info strong{font-size:1rem;color:var(--text)}
+.booking-info a{font-size:.9rem;color:var(--teal-dk)}
+.booking-service{font-size:.85rem;color:var(--text-md)}
+.booking-notes{font-size:.82rem;color:var(--text-lt);font-style:italic}
+.booking-actions{display:flex;flex-direction:column;align-items:flex-end;gap:.4rem}
+.status-badge{font-size:.75rem;font-weight:700;padding:.2rem .7rem;border-radius:999px;background:var(--warm);color:var(--text-md)}
+.status-badge.status-confirmed{background:#d4edda;color:#155724}
+.status-badge.status-cancelled{background:#fde8e8;color:#721c24}
+.action-btn{padding:.35rem .8rem;border-radius:8px;font-family:inherit;font-size:.82rem;font-weight:700;cursor:pointer;border:none;transition:var(--trans)}
+.action-btn.confirm{background:#27ae60;color:#fff}
+.action-btn.confirm:hover{background:#219a52}
+.action-btn.cancel{background:#e74c3c;color:#fff}
+.action-btn.cancel:hover{background:#c0392b}
+.empty,.loading{text-align:center;padding:3rem;color:var(--text-lt)}
+@media(max-width:600px){.booking-card{flex-wrap:wrap}.booking-actions{flex-direction:row;width:100%}}
