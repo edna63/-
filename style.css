@@ -27,10 +27,13 @@ body {
   background: var(--cream);
   color: var(--text);
   line-height: 1.7;
-  direction: rtl;
+  direction: ltr; /* RTL fixed per panel – prevents browser from starting at right side */
   overflow: hidden;
   height: 100%;
 }
+
+/* restore RTL for all visible content */
+.header, .slide-panel, .whatsapp-float { direction: rtl; }
 
 /* ===========================
    HORIZONTAL SLIDE LAYOUT
