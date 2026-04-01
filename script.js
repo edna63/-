@@ -23,7 +23,7 @@ fetch(`${_SB_URL}/rest/v1/settings?select=key,value`, {
 /* ===========================
    HORIZONTAL SLIDE NAVIGATION
 =========================== */
-const SLIDE_IDS = ['home', 'about', 'services', 'testimonials', 'creds', 'contact'];
+const SLIDE_IDS = ['home', 'services', 'testimonials', 'creds', 'contact'];
 const track     = document.getElementById('slide-track');
 const header    = document.getElementById('header');
 let   current   = 0;
@@ -93,8 +93,14 @@ function animatePanel(idx) {
   });
 }
 
-// animate first panel on load
-document.addEventListener('DOMContentLoaded', () => animatePanel(0));
+// Fix RTL bug: force scroll to start + show panel 0
+document.addEventListener('DOMContentLoaded', () => {
+  // reset any RTL-caused scroll offset
+  document.documentElement.scrollLeft = 0;
+  document.body.scrollLeft = 0;
+  track.style.transform = 'translateX(0)';
+  animatePanel(0);
+});
 
 /* ===========================
    CONTACT FORM

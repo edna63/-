@@ -38,7 +38,7 @@ body {
 #slide-track {
   display: flex;
   flex-direction: row;
-  width: 600vw;
+  width: 500vw;
   height: 100vh;
   transform: translateX(0);
   transition: transform .75s cubic-bezier(.77,0,.175,1);
