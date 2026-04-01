@@ -93,6 +93,15 @@ function animatePanel(idx) {
   });
 }
 
+// Copy phone number
+function copyPhone(btn) {
+  navigator.clipboard.writeText('050-3138877').then(() => {
+    const lbl = btn.querySelector('.cs-btn-sub');
+    lbl.textContent = '✓ הועתק!';
+    setTimeout(() => { lbl.textContent = 'לחצו להעתקה'; }, 2000);
+  });
+}
+
 // Fix RTL bug: force scroll to start + show panel 0
 document.addEventListener('DOMContentLoaded', () => {
   // reset any RTL-caused scroll offset

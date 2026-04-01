@@ -983,28 +983,113 @@ ul  { list-style: none; }
 }
 
 /* ===========================
-   WHATSAPP FLOAT
+   FLOATING BUTTONS
 =========================== */
-.whatsapp-float {
+.whatsapp-float,
+.facebook-float {
   position: fixed;
-  bottom: 2rem;
-  left: 2rem;
-  width: 56px; height: 56px;
-  background: #25D366;
+  width: 52px; height: 52px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--white);
-  box-shadow: 0 4px 20px rgba(37,211,102,.4);
   z-index: 90;
   transition: transform var(--trans), box-shadow var(--trans);
 }
-.whatsapp-float svg { width: 28px; height: 28px; }
+.whatsapp-float svg,
+.facebook-float svg { width: 26px; height: 26px; }
+
+.whatsapp-float {
+  bottom: 2rem; left: 2rem;
+  background: #25D366;
+  box-shadow: 0 4px 20px rgba(37,211,102,.4);
+}
 .whatsapp-float:hover {
-  transform: scale(1.12) rotate(-5deg);
+  transform: scale(1.12);
   box-shadow: 0 8px 30px rgba(37,211,102,.5);
 }
+
+.facebook-float {
+  bottom: 6rem; left: 2rem;
+  background: #1877F2;
+  box-shadow: 0 4px 20px rgba(24,119,242,.4);
+}
+.facebook-float:hover {
+  transform: scale(1.12);
+  box-shadow: 0 8px 30px rgba(24,119,242,.5);
+}
+
+/* ===========================
+   CONTACT SIMPLE PANEL
+=========================== */
+.contact-simple {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--gold-dk) 0%, #2a1f3d 100%);
+}
+.cs-inner {
+  text-align: center;
+  padding: 2rem;
+}
+.cs-tag {
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--gold-lt);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: .8rem;
+}
+.cs-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: #fff;
+  margin-bottom: .4rem;
+}
+.cs-sub {
+  color: rgba(255,255,255,.65);
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
+}
+.cs-buttons {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+.cs-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .4rem;
+  width: 160px;
+  padding: 1.5rem 1rem;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: transform var(--trans), box-shadow var(--trans);
+  text-decoration: none;
+}
+.cs-btn:hover { transform: translateY(-4px); }
+.cs-btn-icon { font-size: 2rem; }
+.cs-btn-label { font-size: 1.1rem; font-weight: 700; color: #fff; }
+.cs-btn-sub { font-size: .75rem; color: rgba(255,255,255,.75); }
+
+.cs-phone { background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3); }
+.cs-phone:hover { box-shadow: 0 8px 30px rgba(255,255,255,.15); }
+.cs-wa    { background: #25D366; box-shadow: 0 4px 20px rgba(37,211,102,.3); }
+.cs-wa:hover { box-shadow: 0 8px 30px rgba(37,211,102,.5); }
+.cs-fb    { background: #1877F2; box-shadow: 0 4px 20px rgba(24,119,242,.3); }
+.cs-fb:hover { box-shadow: 0 8px 30px rgba(24,119,242,.5); }
+
+.cs-copy {
+  color: rgba(255,255,255,.3);
+  font-size: .8rem;
+}
+.cs-copy a { color: rgba(255,255,255,.3); }
 
 /* ===========================
    RESPONSIVE
