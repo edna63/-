@@ -748,14 +748,36 @@ ul  { list-style: none; }
 .hero-motto {
   text-align: center;
   font-family: 'Playfair Display', serif;
-  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  font-size: clamp(1.4rem, 3.5vw, 2.2rem);
   font-weight: 600;
-  color: var(--gold-dk);
-  letter-spacing: .02em;
-  margin-bottom: 2.5rem;
+  color: rgba(255,255,255,.92);
+  letter-spacing: .04em;
+  margin-bottom: 2rem;
   padding-top: .5rem;
-  opacity: .92;
+  text-shadow: 0 2px 12px rgba(0,0,0,.3);
 }
+
+/* ===========================
+   HERO TREATMENTS PILLS
+=========================== */
+.hero-treatments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin: 1.2rem 0 1.5rem;
+}
+.ht-pill {
+  background: rgba(255,255,255,.15);
+  border: 1px solid rgba(255,255,255,.3);
+  color: rgba(255,255,255,.95);
+  font-size: .82rem;
+  font-weight: 500;
+  padding: .4rem .9rem;
+  border-radius: 999px;
+  backdrop-filter: blur(4px);
+  transition: background var(--trans);
+}
+.ht-pill:hover { background: rgba(255,255,255,.25); }
 
 /* ===========================
    HOME SERVICES STRIP (panel 0)
