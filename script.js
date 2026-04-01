@@ -9,8 +9,8 @@ fetch(`${_SB_URL}/rest/v1/settings?select=key,value`, {
 }).then(r=>r.json()).then(rows=>{
   rows.forEach(row=>{
     if (row.key==='about_photo' && row.value) {
-      const img = document.querySelector('.about-img-frame img');
-      if (img) img.src = row.value;
+      document.querySelectorAll('.about-img-frame img, #hero-portrait-img')
+        .forEach(img => { if(img) img.src = row.value; });
     }
     if (row.key==='hero_bg' && row.value) {
       const bg = document.querySelector('.hero-bg');
