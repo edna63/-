@@ -20,7 +20,7 @@
   --trans:   .3s ease;
 }
 
-html { scroll-behavior: smooth; font-size: 16px; }
+html { font-size: 16px; overflow: hidden; height: 100%; }
 
 body {
   font-family: 'Heebo', sans-serif;
@@ -28,7 +28,36 @@ body {
   color: var(--text);
   line-height: 1.7;
   direction: rtl;
+  overflow: hidden;
+  height: 100%;
 }
+
+/* ===========================
+   HORIZONTAL SLIDE LAYOUT
+=========================== */
+#slide-track {
+  display: flex;
+  flex-direction: row;
+  width: 600vw;
+  height: 100vh;
+  transform: translateX(0);
+  transition: transform .75s cubic-bezier(.77,0,.175,1);
+  will-change: transform;
+}
+
+.slide-panel {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-lt) transparent;
+}
+.slide-panel::-webkit-scrollbar { width: 4px; }
+.slide-panel::-webkit-scrollbar-thumb { background: var(--gold-lt); border-radius: 4px; }
 
 img { max-width: 100%; display: block; }
 a   { text-decoration: none; color: inherit; }

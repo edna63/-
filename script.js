@@ -21,41 +21,80 @@ fetch(`${_SB_URL}/rest/v1/settings?select=key,value`, {
 }).catch(()=>{});
 
 /* ===========================
-   NAVBAR – scroll & mobile
+   HORIZONTAL SLIDE NAVIGATION
 =========================== */
+const SLIDE_IDS = ['home', 'about', 'services', 'testimonials', 'creds', 'contact'];
+const track     = document.getElementById('slide-track');
 const header    = document.getElementById('header');
-const navToggle = document.getElementById('nav-toggle');
-const navMenu   = document.getElementById('nav-menu');
+let   current   = 0;
 
-window.addEventListener('scroll', () => {
-  header.classList.toggle('scrolled', window.scrollY > 60);
+function slideTo(id) {
+  const idx = SLIDE_IDS.indexOf(id);
+  if (idx === -1) return;
+  current = idx;
+  track.style.transform = `translateX(-${idx * 100}vw)`;
+
+  // scroll current panel to top
+  const panels = document.querySelectorAll('.slide-panel');
+  if (panels[idx]) panels[idx].scrollTop = 0;
+
+  // active nav link
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  const active = document.querySelector(`.nav-link[href="#${id}"]`);
+  if (active) active.classList.add('active');
+
+  // header style: only home panel has transparent header
+  header.classList.toggle('scrolled', idx !== 0);
+
+  // animate cards in the new panel
+  animatePanel(idx);
+}
+
+// intercept ALL #hash links on the page
+document.addEventListener('click', e => {
+  const a = e.target.closest('a[href^="#"]');
+  if (!a) return;
+  const id = a.getAttribute('href').slice(1);
+  if (SLIDE_IDS.includes(id)) {
+    e.preventDefault();
+    slideTo(id);
+  }
 });
 
-navToggle.addEventListener('click', () => {
-  navMenu.classList.toggle('open');
-});
-
-// Close menu when a link is clicked
-navMenu.querySelectorAll('.nav-link').forEach(link => {
-  link.addEventListener('click', () => navMenu.classList.remove('open'));
+// header scrolled style when panel content is scrolled
+document.querySelectorAll('.slide-panel').forEach((panel, idx) => {
+  panel.addEventListener('scroll', () => {
+    if (idx === current) {
+      header.classList.toggle('scrolled', idx !== 0 || panel.scrollTop > 60);
+    }
+  });
 });
 
 /* ===========================
-   ACTIVE NAV LINK on scroll
+   CARD ANIMATIONS PER PANEL
 =========================== */
-const sections = document.querySelectorAll('section[id]');
+const ANIM_SELECTORS = '.service-card, .testimonial-card, .stat-item, .about-content, .about-image, .contact-info, .contact-form, .cred-card';
+const animatedEls = new WeakSet();
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-      const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
-      if (active) active.classList.add('active');
-    }
+function animatePanel(idx) {
+  const panels = document.querySelectorAll('.slide-panel');
+  const panel  = panels[idx];
+  if (!panel) return;
+  panel.querySelectorAll(ANIM_SELECTORS).forEach((el, i) => {
+    if (animatedEls.has(el)) return;
+    animatedEls.add(el);
+    el.style.opacity   = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition= `opacity .5s ease ${i * 0.07}s, transform .5s ease ${i * 0.07}s`;
+    setTimeout(() => {
+      el.style.opacity   = '1';
+      el.style.transform = 'none';
+    }, 60);
   });
-}, { threshold: 0.4 });
+}
 
-sections.forEach(s => observer.observe(s));
+// animate first panel on load
+document.addEventListener('DOMContentLoaded', () => animatePanel(0));
 
 /* ===========================
    CONTACT FORM
@@ -68,8 +107,6 @@ form.addEventListener('submit', e => {
   const btn = form.querySelector('button[type="submit"]');
   btn.disabled = true;
   btn.textContent = 'שולח...';
-
-  // Simulate async submission (replace with real fetch to your backend)
   setTimeout(() => {
     success.classList.add('show');
     form.reset();
@@ -78,41 +115,6 @@ form.addEventListener('submit', e => {
     setTimeout(() => success.classList.remove('show'), 6000);
   }, 900);
 });
-
-/* ===========================
-   SCROLL-IN ANIMATIONS
-=========================== */
-const animEls = document.querySelectorAll(
-  '.service-card, .testimonial-card, .stat-item, .about-content, .about-image, .contact-info, .contact-form'
-);
-
-const anim = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      anim.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.12 });
-
-animEls.forEach((el, i) => {
-  el.style.opacity    = '0';
-  el.style.transform  = 'translateY(28px)';
-  el.style.transition = `opacity .55s ease ${i * 0.06}s, transform .55s ease ${i * 0.06}s`;
-  anim.observe(el);
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.visible').forEach(el => {
-    el.style.opacity   = '1';
-    el.style.transform = 'none';
-  });
-});
-
-// Inject .visible rule via JS so CSS doesn't need it
-const style = document.createElement('style');
-style.textContent = '.visible { opacity: 1 !important; transform: none !important; }';
-document.head.appendChild(style);
 
 /* ===========================
    COUNTER ANIMATION (stats)
@@ -127,19 +129,12 @@ function animateCounter(el, target, suffix = '') {
   }, 30);
 }
 
-const statsSection = document.querySelector('.stats');
-let countersStarted = false;
-
-const statsObs = new IntersectionObserver(entries => {
-  if (entries[0].isIntersecting && !countersStarted) {
-    countersStarted = true;
-    document.querySelectorAll('.stat-number').forEach(el => {
-      const raw    = el.textContent.trim();
-      const suffix = raw.replace(/[0-9]/g, '');
-      const num    = parseInt(raw, 10);
-      animateCounter(el, num, suffix);
-    });
-  }
-}, { threshold: 0.5 });
-
-if (statsSection) statsObs.observe(statsSection);
+// run counters when home panel is visible (always panel 0, triggered on load)
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.stat-number').forEach(el => {
+    const raw    = el.textContent.trim();
+    const suffix = raw.replace(/[0-9]/g, '');
+    const num    = parseInt(raw, 10);
+    if (!isNaN(num)) animateCounter(el, num, suffix);
+  });
+});
