@@ -245,6 +245,101 @@ ul  { list-style: none; }
     url('images/sunset1.jpg') center/cover no-repeat;
 }
 
+/* ── FULLSCREEN HOME PANEL ── */
+.home-panel { overflow: hidden !important; }
+
+.home-fs {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 4.5rem;
+  padding-bottom: 1rem;
+  gap: .6rem;
+}
+
+.home-main-grid {
+  display: grid;
+  grid-template-columns: 220px 1fr 1fr;
+  gap: 1.8rem;
+  flex: 1;
+  align-items: center;
+  min-height: 0;
+}
+
+/* photo col */
+.home-photo-col .hero-portrait-frame {
+  width: 210px; height: 250px;
+}
+
+/* info col */
+.home-info-col { display: flex; flex-direction: column; gap: .4rem; }
+.home-info-col .hero-title { font-size: clamp(1.5rem, 2.8vw, 2.2rem); line-height: 1.2; }
+.home-info-col .hero-text  { font-size: .88rem; margin: 0; }
+.home-info-col .hero-treatments { margin: .5rem 0; }
+.home-info-col .hero-actions { gap: .6rem; flex-wrap: wrap; }
+.home-info-col .btn { padding: .55rem 1.2rem; font-size: .85rem; }
+
+/* reviews col */
+.home-reviews-col {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  min-height: 0;
+}
+.home-reviews-label {
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--gold-lt);
+  margin-bottom: .2rem;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.home-review-card {
+  background: rgba(255,255,255,.1);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 10px;
+  padding: .6rem .9rem;
+  font-size: .8rem;
+  color: rgba(255,255,255,.88);
+  font-style: italic;
+  line-height: 1.5;
+  flex: 1;
+}
+.home-review-card.featured {
+  background: rgba(255,255,255,.17);
+  border-color: rgba(255,255,255,.3);
+  color: #fff;
+}
+
+/* credentials bar */
+.home-creds-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .5rem;
+  padding: .6rem 1rem;
+  background: rgba(0,0,0,.2);
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.1);
+}
+.hcb-label {
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--gold-lt);
+  white-space: nowrap;
+}
+.hcb-pill {
+  font-size: .75rem;
+  color: rgba(255,255,255,.8);
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.15);
+  padding: .25rem .8rem;
+  border-radius: 999px;
+}
+
 .hero-content {
   position: relative;
   z-index: 1;
